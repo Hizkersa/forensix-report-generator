@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Preview – Forensix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>Generated Report (Markdown)</h1>
+        <p>Copy the content below and paste it into your DFIR notes or save it as a <code>.md</code> file.</p>
+
+        <textarea readonly>{{ report_md }}</textarea>
+
+        <p style="margin-top:1rem;">
+            <a href="{{ url_for('index') }}">← Generate another report</a>
+        </p>
+    </div>
+
+    <div class="footer">
+        Forensix Report Generator · Local DFIR tool · Dark mode UI
+    </div>
+</div>
+</body>
+</html>

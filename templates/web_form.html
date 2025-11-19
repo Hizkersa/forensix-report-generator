@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forensix Report Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h1>Forensix Report Generator</h1>
+        <p class="subtitle">
+            Generate a DFIR-style incident report from your case metadata, IOCs and investigation timeline.
+        </p>
+
+        <form action="{{ url_for('generate_report_web') }}" method="post" enctype="multipart/form-data">
+
+            <!-- Sección 1: Case JSON -->
+            <div class="form-section">
+                <div class="form-section-header">
+                    <span class="section-number">Step 1</span>
+                    <span class="form-section-title">Case metadata (JSON)</span>
+                </div>
+                <p class="form-section-desc">
+                    Provide the basic information about the incident: case id, analyst, date, environment,
+                    short summary and impact.
+                </p>
+
+                <label for="case_file">Case JSON file</label>
+                <p class="input-hint">
+                    Example: <code>cases/sample_case.json</code>
+                </p>
+                <input type="file" name="case_file" id="case_file" required>
+            </div>
+
+            <!-- Sección 2: IOCs -->
+            <div class="form-section">
+                <div class="form-section-header">
+                    <span class="section-number">Step 2</span>
+                    <span class="form-section-title">Indicators of Compromise (IOCs)</span>
+                </div>
+                <p class="form-section-desc">
+                    Upload a CSV with extracted IOCs. Typically the output of your IOC Extractor:
+                    IP, Domain, URL and Hash values.
+                </p>
+
+                <label for="iocs_file">IOCs CSV file</label>
+                <p class="input-hint">
+                    Expected columns: <code>indicator,type,source</code><br>
+                    Example: <code>cases/sample_iocs.csv</code>
+                </p>
+                <input type="file" name="iocs_file" id="iocs_file" required>
+            </div>
+
+            <!-- Sección 3: Timeline (opcional) -->
+            <div class="form-section">
+                <div class="form-section-header">
+                    <span class="section-number">Step 3</span>
+                    <span class="form-section-title">Timeline of events (optional)</span>
+                </div>
+                <p class="form-section-desc">
+                    Provide a CSV timeline with key events and timestamps to build the incident chronology.
+                    If omitted, the report will simply note that no timeline was provided.
+                </p>
+
+                <label for="timeline_file">Timeline CSV file (optional)</label>
+                <p class="input-hint">
+                    Expected columns: <code>timestamp,event,source</code><br>
+                    Example: <code>cases/sample_timeline.csv</code>
+                </p>
+                <input type="file" name="timeline_file" id="timeline_file">
+            </div>
+
+            <button type="submit">Generate Report</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        Forensix Report Generator · Local DFIR tool · Dark mode UI
+    </div>
+</div>
+</body>
+</html>

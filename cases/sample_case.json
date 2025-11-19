@@ -1,0 +1,12 @@
+{
+  "report_id": "FRG-2024-001",
+  "case_id": "2024-001",
+  "title": "Suspicious outbound traffic from workstation WIN-01",
+  "analyst": "Sebastián Fuentes",
+  "date": "2024-11-17",
+  "summary": "Detection of suspicious outbound connections to a known malicious domain originating from WIN-01 in a home lab environment.",
+  "environment": "Home lab / Simulated case",
+  "severity": "Medium",
+  "impact": "Potential C2 communication and malware download if not contained.",
+  "status": "Closed"
+}
